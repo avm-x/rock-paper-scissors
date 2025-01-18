@@ -1,0 +1,58 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.flex-v-cc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-v-c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-v-c-spa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.flex-h {
+    display: flex;
+}
+
+.flex-h-spa {
+    display: flex;
+    justify-content: space-around;
+}
+.rps-cont {
+    background-color: #00201E;
+    width: 80%;
+    height: 15rem;
+}
+
+.display {
+    width: 95%;
+    height: 60%;
+    border: 2px solid white;
+    background-color: #3A5268;
+    color: white;
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+.controls {
+    width: 90%;
+}
+
+.btn-gameOpts {
+}
