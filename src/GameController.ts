@@ -1,71 +1,32 @@
 // GameController Class
 class GameController implements IGameController {
     // properties
-    id: number;
-    users: User[];
-    games: Game[];
-    maxScore: number;
-    useAi: boolean;
-    nRounds: number;
+    private id: number;
+    private users: IUser[];
+    private maxPoints : number;
 
     // constructor
-    constructor(users: User[], games: Game[], maxScore: number, useAi: boolean, nRounds: number){
+    constructor(users : IUser[], maxPoints : number = 5){
         this.id = 0;
         this.users = users;
-        this.games = games;
-        this.maxScore = maxScore;
-        this.useAi = useAi;
-        this.nRounds = nRounds;
+        this.maxPoints = maxPoints;
     }
 
-    // methods
-    setId(n : number){
+    setId(n: number): void {
         this.id = n;
     }
 
-    getId() : number {
+    getId(): number {
         return this.id;
     }
 
-    addUser(user : User ){
-        if(this.users.length < 2){
-            this.users.push(user);
-        }
+    setUsers(users : IUser[]) : void {
+        this.users = users;
     }
 
-    removeUser(user : IUser){
-        this.users = this.users.filter((storedUser) => storedUser.id !== user.id)
+    getUsers() : IUser[] {
+        return this.users;
     }
 
-    // starts a loop until one of the players reach the maxScore.
-    startGame(maxPoints : number = 5){
-        // create Game
-        const currGame = new Game(this.users, maxPoints);
-        
-        let leadingUser = this.users[0];
 
-        while(leadingUser.getPointsInCurrGame() < maxPoints){
-            
-            // create round
-            let currRound = new Round( this.users );
-
-            // make choices
-
-            // eval choices
-            currRound.evalRound();
-
-            // add round to game
-            currGame.pushRound(currRound);
-        
-            // update leadingUser;
-            leadingUser = (this.users[0].getPointsInCurrGame() > this.users[1].getPointsInCurrGame()) ? this.users[0] : this.users[1];
-        }
-
-        // assign game to each user
-        this.users.forEach((user) => user.addGame(currGame));
-    
-
-    }        
-
-    
 }

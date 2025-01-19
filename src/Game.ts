@@ -1,50 +1,63 @@
 // Game class
 
 class Game implements IGame {
-    id: number;
-    users : User[];
-    winner : User | null;
-    rounds : Round[];
-    maxPoints : number;
-    isActive : boolean;
+    private id: number;
+    private isOn : boolean;
+    private winner : IUser|null;
+    private users : IUser[];
+    private rounds : IRound[];
+    private maxPoints : number;
 
-    constructor( users : User[], maxPoints : number = 5) {
+    constructor(users : IUser[] = [], maxPoints : number = 5){
         this.id = 0;
-        this.users = users;
+        this.isOn = true;
         this.winner = null;
+        this.users = users;
         this.rounds = [];
         this.maxPoints = maxPoints;
-        this.isActive = true;
     }
-
-
-    //setters and getters of all properties
-    setId(id:number) : void{
-        this.id = id;
+    
+    setId(n : number) : void {
+        this.id = n;
     }
-
     getId() : number {
         return this.id;
     }
 
-    setWinner(winner : User) : void {
+    setIsOn(bool : boolean) : void {
+        this.isOn = bool;
+    }
+
+    getIsOn() : boolean {
+        return this.isOn;
+    }
+
+    setWinner(winner : IUser) : void {
         this.winner = winner;
     }
 
-    getWinner() : User | null {
+    getWinner() : IUser|null {
         return this.winner;
     }
 
-    setRounds( rounds : Round[]) : void{
-        this.rounds = rounds;
+    setUsers(usersArr : IUser[]) : void {
+        this.users = usersArr;
     }
 
-    getRounds() : Round[] {
-        return this.rounds;
+    pushUser(user : IUser) : void {
+        this.users.push(user);
     }
 
-    pushRound( round : Round ){
+    getUsers() : IUser[] {
+        return this.users;
+    }
+
+    pushRound(round : IRound) : void {
         this.rounds.push(round);
+    }
+
+    getRounds() : IRound[] {
+        return this.rounds;
     }
 
     setMaxPoints(n : number) : void {
@@ -54,9 +67,4 @@ class Game implements IGame {
     getMaxPoints() : number {
         return this.maxPoints;
     }
-
-    setIsActive( bool : boolean ) {
-        this.isActive = bool;
-    }
-
 }

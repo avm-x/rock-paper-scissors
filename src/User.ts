@@ -3,15 +3,13 @@ class User implements IUser {
     id: number;
     name: string;
     games: IGame[];
-    choice: string;
     isAi: boolean;
-    userSession : UserSession;
+    userSession : IUserSession;
 
-    constructor(id: number,name: string,games: IGame[] = [],choice: string = "", isAi: boolean = false) {
-        this.id = id;
+    constructor(name: string, isAi: boolean = false) {
+        this.id = 0;
         this.name = name;
-        this.games = games;
-        this.choice = choice;
+        this.games = [];
         this.isAi = isAi;
         this.userSession = new UserSession();
     }
@@ -42,35 +40,28 @@ class User implements IUser {
         return this.games;
     }
 
-    addGame(game: IGame) : void{
+    pushGame(game: IGame) : void{
         this.games.push(game);
     }
 
-    setChoice(choice: string) : void{
-        this.choice = choice;
-    }
 
-    getChoice() : string{
-        return this.choice;
-    }
-
-    setAi(isAi: boolean) : void{
+    setIsAi(isAi: boolean) : void{
         this.isAi = isAi;
     }
 
-    toggleAi() : void{
-        this.isAi = !this.isAi;
-    }
+    getIsAi() : boolean {
+        return this.isAi;
+    }    
 
-    getUserSession() : UserSession {
+    getUserSession() : IUserSession {
         return this.userSession;
     }
 
-    setUserSession( uSS : UserSession ) : void {
+    setUserSession( uSS : IUserSession ) : void {
         this.userSession = uSS;
     }
 
-    aiChoice() : string{ 
+    makeAiChoice() : string{ 
         if(this.isAi){
             const choices = ["rock", "paper", "scissors"];
             const randChoice = Math.floor( Math.random() * choices.length );
@@ -80,19 +71,13 @@ class User implements IUser {
         return "";
     }
 
-    getPointsInCurrGame() : number {
-        return this.userSession.getPoints();
+    makeChoice(choice: string) : void {
+        this.userSession.setCurrChoice(choice);
     }
 
-    addPointsInCurrGame(n : number) : void {
-        this.userSession.addPoints(n);
+    getChoice() : string {
+        return this.userSession.getCurrChoice();
     }
-
-    removePointsInCurrGame(n : number) : void {
-        this.userSession.removePoints(n);
-    }
-
-
 }
 
 

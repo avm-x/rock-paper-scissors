@@ -1,51 +1,48 @@
 // userSession
 
 class UserSession implements IUserSession {
-    isActive : boolean;
-    games : Game[];
-    currPoints : number;
+    private id : number;
+    private currGame : IGame|null;
+    private currChoice : string;
+    private currPoints : number;
 
     constructor(){
-        this.isActive = true;
-        this.games = [];
+        this.id = 0;
+        this.currGame = null;
+        this.currChoice = "";
         this.currPoints = 0;
     }
 
-    setIsActive( bool : boolean ) : void {
-        this.isActive = bool;
+    setId(n : number) : void {
+        this.id = n;
     }
 
-    getIsActive() : boolean {
-        return this.isActive;
+    getId() : number {
+        return this.id;
     }
 
-    getGames() : Game[] {
-        return this.games;
+    setCurrGame(game : IGame) : void {
+        this.currGame = game;
     }
 
-    setGames( games : Game[] ) : void {
-        this.games = games;
+    getCurrGame() : IGame|null {
+        return this.currGame;
     }
 
-    addGame( game : Game ) : void {
-        this.games.push(game);
+    setCurrChoice(choice : string) : void {
+        this.currChoice = choice;
     }
 
-    addPoints(n:number=1) : void {
-        this.currPoints += n;
+    getCurrChoice() : string {
+        return this.currChoice;
     }
 
-    getPoints() : number {
+    addToCurrPoints(n : number) : void {
+
+    }
+
+    getCurrPoints(): number {
         return this.currPoints;
-    }
-
-    removePoints(n : number) : void {
-        if(this.currPoints >= n){
-            this.currPoints -= n;
-        } else {
-            this.currPoints = 0
-        }
-
     }
 
 }

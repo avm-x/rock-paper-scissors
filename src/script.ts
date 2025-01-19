@@ -1,4 +1,9 @@
-console.log(`
-    Hi, dear user: This is a console version of the popular game Rock, Paper, Scissors.
-    You can play against the computer or against a friend.
-    `);
+// gameController
+
+
+// getting ui buttons
+const startBtn = document.getElementById("start-btn");
+const restartBtn = document.getElementById("restart-btn");
+
+const choicesBtn = document.getElementsByClassName("btn-choice");
+

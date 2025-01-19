@@ -1,55 +1,39 @@
 // round class
 
 class Round implements IRound {
-    users : User[];
-    winner : User | null;
-    choices : string[];
-    isActive : boolean;
+    private id : number;
+    private choices : string[];
+    private winner : IUser|null;
 
-    constructor(users : User[]){
-        this.users = users || [];
+    constructor(choices : string[] = []){
+        this.id = 0;
+        this.choices = choices;
         this.winner = null;
-        this.choices = [];
-        this.isActive = true;
+    }
+    
+    setId(n : number) : void {
+        this.id = n;
     }
 
-    // setters n getters
-    setUsers(users : User[]) : void {
-        this.users = users;
+    getId() : number {
+        return this.id;
     }
 
-    addUser(user : User) : void {
-        this.users.push(user);
-    }
-
-    getUsers() : User[] {
-        return this.users;
-    }
-
-    setWinner( user : User) : void {
-        this.winner = user;
-    }
-
-    getWinner() : User | null {
-        return this.winner;
-    }
-
-    setChoices(choicesArr : string[]) : void {
-        this.choices = choicesArr;
+    setChoices( choices : string[]) : void {
+        this.choices = choices;
     }
 
     getChoices() : string[] {
         return this.choices;
     }
 
-    setIsActive(bool : boolean) : void {
-        this.isActive = bool;
+    setWinner(winner : IUser) : void {
+        this.winner = winner;
     }
 
-    getIsActive() : boolean {
-        return this.isActive;
+    getWinner() : IUser|null {
+        return this.winner;
     }
-
 
     // return winner choice.
     _evalChoices(aChoice : string, bChoice : string) : string {
@@ -96,8 +80,10 @@ class Round implements IRound {
     }
 
     evalRound() : void {
+       /*
         let winnerChoice = this._evalChoices( this.users[0].getChoice() , this.users[1].getChoice());
         this.winner = (winnerChoice == this.users[0].getChoice() ? this.users[0] : this.users[1] )
         this.winner.addPointsInCurrGame(1);
+        */
     }
 }
